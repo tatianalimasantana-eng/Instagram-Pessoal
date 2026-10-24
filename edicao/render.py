@@ -83,13 +83,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """ + '\n'.join(ev) + '\n'
 open(f'{S}/work/caps.ass','w').write(ass)
 
-# 3) final
+# 3) leve maquiagem digital (pele) sobre o vídeo já cortado
+run(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',f'{S}/work/list.txt','-map','0:v','-c','copy',f'{S}/work/concat.mov'])
+run([f'{S}/venv/bin/python', f'{S}/beauty.py', 'video', f'{S}/work/concat.mov', f'{S}/work/beauty.mp4'])
+
+# 4) final
 T = P['total']
-fc = (f"[0:v]subtitles={S}/work/caps.ass:fontsdir={S}/fonts[v1];"
+fc = (f"[1:v]subtitles={S}/work/caps.ass:fontsdir={S}/fonts[v1];"
       f"color=c=0xFFD45C:s=1080x10:r={FPS}[bar];"
       f"[v1][bar]overlay=x='-W+W*t/{T:.3f}':y=H-10:shortest=1,format=yuv420p[v];"
       f"[0:a]highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=120:makeup=2,loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000[a]")
-run(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',f'{S}/work/list.txt','-filter_complex',fc,'-map','[v]','-map','[a]',
+run(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',f'{S}/work/list.txt','-i',f'{S}/work/beauty.mp4','-filter_complex',fc,'-map','[v]','-map','[a]',
      '-c:v','libx264','-preset','slow','-crf','20','-profile:v','high','-r',str(FPS),'-c:a','aac','-b:a','192k','-movflags','+faststart',
      '-t',f'{T:.3f}',f'{OUT}/reels-ep01-final.mp4'])
 print('done')
