@@ -52,7 +52,7 @@ for gi, g in enumerate(groups):
         parts = []
         for wj, x in enumerate(g):
             t = x[2]; is_e = t.lower() in EMPH
-            base = r'{\fnPlayfair BoldItalic\fs116\c' + YEL + '}' if is_e else r'{\fnMont Black\fs92\c&HFFFFFF&}'
+            base = r'{\fnFira BoldItalic\fs104\c' + YEL + '}' if is_e else r'{\fnFira BoldItalic\fs90\c&HFFFFFF&}'
             if wj == wi:
                 pop = r'{\fscx118\fscy118\t(0,110,\fscx106\fscy106)' + (r'\c' + YEL if not is_e else '') + '}'
                 parts.append(base + pop + t + r'{\fscx100\fscy100}')
@@ -74,9 +74,9 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,Mont Black,92,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,0,0,0,0,100,100,0,0,1,7,3,2,60,60,520,1
-Style: Big,Playfair BoldItalic,140,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,0,0,0,0,100,100,0,0,1,5,4,5,60,60,0,1
-Style: Tag,Mont XBold,40,&H00FFFFFF,&H00FFFFFF,&H70000000,&H70000000,0,0,0,0,100,100,2,0,3,16,0,8,60,60,240,1
+Style: Cap,Fira BoldItalic,90,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,0,0,0,0,100,100,0,0,1,7,3,2,60,60,520,1
+Style: Big,Fira SemiItalic,120,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,0,0,0,0,100,100,0,0,1,5,4,5,60,60,0,1
+Style: Tag,Fira MediumItalic,42,&H00FFFFFF,&H00FFFFFF,&H70000000,&H70000000,0,0,0,0,100,100,1,0,3,16,0,8,60,60,240,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
