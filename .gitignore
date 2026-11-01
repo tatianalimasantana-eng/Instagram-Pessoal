@@ -1,3 +1,4 @@
 # Vídeos finais passam do limite de 100MB do GitHub
 *.mp4
 *.mov
+__pycache__/
