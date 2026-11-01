@@ -6,10 +6,10 @@ Arquivo de passagem: tudo que uma nova sessão precisa para continuar a edição
 
 - [x] Fontes Fira Sans Italic 500/600/700 baixadas do Google Fonts oficial, licença SIL OFL (`fontes/`)
 - [x] Pasta do Drive localizada e compartilhada pela Tati ("qualquer pessoa com o link")
-- [ ] Baixar os arquivos (bloqueado: rede do ambiente não libera `drive.usercontent.google.com`; o conector do Drive só baixa até 10 MB)
-- [ ] Transcrição (precisa de `huggingface.co` e `cdn-lfs.hf.co` para o modelo faster-whisper)
-- [ ] Análise de todos os takes, roteiro de cortes (mostrar à Tati antes do render final)
-- [ ] Render final, capa, SRT, versão sem legendas, projeto editável
+- [x] Arquivos baixados (rede liberada)
+- [x] Transcrição (faster-whisper large-v3)
+- [x] Análise e roteiro aprovados pela Tati (sem música, sem filtro de beleza)
+- [x] Render final, capa, SRT, versão sem legendas, projeto editável (`reels/ep01-pumpkin-farm/`, `edicao/ep01-pumpkin-farm/`)
 
 Download direto (com rede liberada):
 `curl -L -o ARQ "https://drive.usercontent.google.com/download?id=ID&export=download&confirm=t"`
