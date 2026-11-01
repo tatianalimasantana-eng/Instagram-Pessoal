@@ -44,7 +44,16 @@ def offset(src_t):
         if a - 0.01 <= src_t <= b + 0.01: return o - a
     raise ValueError(src_t)
 
-TOTAL = 45.5
+TOTAL_D = 45.5   # duração na linha do tempo de desenho (voz em 1.0x)
+
+# Voz acelerada a pedido da Tati (tom preservado com atempo).
+# A linha do tempo de desenho é comprimida pelo mesmo fator até o fim da fala;
+# o encerramento (depois da fala) mantém a duração.
+SPEED = 1.2
+NARR_END = 41.8
+def T(t):
+    return t / SPEED if t <= NARR_END else NARR_END / SPEED + (t - NARR_END)
+TOTAL = T(TOTAL_D)
 
 # ---------------------------------------------------------------- planos
 # (tipo, arquivo, src_in, out_start, out_end, extra)
@@ -76,7 +85,7 @@ SHOTS = [
     ('P', 'IMG_7479', 0, 32.10, 34.40, dict(cx=.55, z=(1.00, 1.07))),  # folha de maple (POV) · "Eu amo esses passeios"
     ('V', 'IMG_7314', 5.00, 34.40, 37.30, {}),                     # selfie · "cada estação"
     ('V', 'IMG_7425', 4.60, 37.30, 41.80, {}),                     # até o celeiro + aceno · "Ontário / salva essa dica"
-    ('P', 'IMG_7462', 0, 41.80, TOTAL, dict(cx=.50, z=(1.08, 1.00))),  # árvore · encerramento
+    ('P', 'IMG_7462', 0, 41.80, TOTAL_D, dict(cx=.50, z=(1.08, 1.00))),  # árvore · encerramento
 ]
 
 def render_video(i, name, src_in, dur, crop=None):
@@ -183,7 +192,7 @@ OVERLAYS = [
     ('cantinho', 42.00, 43.75, 'slide', [
         (560, 'Mais um cantinho de Ontário', F600, 64),
         (642, 'para conhecer. 🍂', F600, 64)], (520, 740, 100)),
-    ('serie', 43.90, TOTAL, 'slide', [
+    ('serie', 43.90, TOTAL_D, 'slide', [
         (500, 'PASSEIOS EM ONTÁRIO', F500, 84),
         (608, 'Fall Edition | EP. 01', F500, 44),
         (720, 'Salva esse passeio para o próximo outono! 🎃', F500, 34)], (460, 790, 115)),
@@ -227,12 +236,12 @@ def build_captions(words):
         last = c['words'][-1]['s']
         a, b, o = next(n for n in NARR if n[0] - 0.01 <= last <= n[1] + 0.01)
         c['off'] = o - a
-        c['start'] = max(c['words'][0]['s'], a) + c['off']
-        c['end'] = min(c['words'][-1]['e'], b) + c['off']
-    for a, b in zip(out, out[1:]):
-        if b['start'] - a['end'] < 0.35: a['end'] = b['start'] - 0.02
+        c['start'] = T(max(c['words'][0]['s'], a) + c['off'])
+        c['end'] = T(min(c['words'][-1]['e'], b) + c['off'])
     # ataque da primeira palavra: o modelo às vezes marca o início cedo demais
     for c in out: c['start'] = max(c['start'] - 0.05, 0)
+    for a, b in zip(out, out[1:]):
+        if b['start'] - a['end'] < 0.35: a['end'] = b['start'] - 0.02
     return out
 
 def ts_ass(t): return f'{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}'
@@ -259,7 +268,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         body = []
         for w, tok in zip(c['words'], c['text'].split()):
             if c['hl'] and tok.strip(',.') == c['hl']:
-                t1 = max(0, round((w['s'] + c['off'] - c['start']) * 1000))
+                t1 = max(0, round((T(w['s'] + c['off']) - c['start']) * 1000))
                 body.append(r'{\t(%d,%d,\c%s\fscx114\fscy114)}%s{\r}' % (t1, t1 + 140, YEL, tok))
             else:
                 body.append(tok)
@@ -283,8 +292,9 @@ def build_audio():
     # 2) voz posicionada na linha do tempo
     parts, labels = [], []
     for i, (a, b, o) in enumerate(NARR):
-        parts.append(f'[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,afade=t=in:d=0.04,afade=t=out:st={b - a - 0.06}:d=0.06,'
-                     f'adelay={int(o * 1000)}|{int(o * 1000)}[n{i}]')
+        d = (b - a) / SPEED
+        parts.append(f'[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,atempo={SPEED},afade=t=in:d=0.04,afade=t=out:st={d - 0.06:.3f}:d=0.06,'
+                     f'adelay={int(T(o) * 1000)}|{int(T(o) * 1000)}[n{i}]')
         labels.append(f'[n{i}]')
     voice_tl = WORK / 'narracao_timeline.wav'
     run(['ffmpeg', '-v', 'error', '-y', '-i', str(voice), '-filter_complex',
@@ -299,7 +309,7 @@ def main():
     # planos
     segs = []
     for i, (kind, name, src_in, a, b, ex) in enumerate(SHOTS):
-        dur = b - a
+        dur = T(b) - T(a)
         segs.append(render_video(i, name, src_in, dur, ex.get('crop')) if kind == 'V' else render_photo(i, name, dur, ex['cx'], ex['z']))
         print(f'plano {i:02d} {name} {a:5.2f}-{b:5.2f}', flush=True)
     lst = WORK / 'segmentos.txt'
@@ -308,21 +318,16 @@ def main():
     run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', str(lst), '-c', 'copy', str(base)])
 
     voice_tl = build_audio()
-    # som ambiente: baixo sob a voz, sobe nos respiros
-    amb_vol = "if(between(t,11.55,13.3)+between(t,29.45,32.1)+gte(t,41.7),0.55,0.10)"
-    amb = WORK / 'ambiente.wav'
-    run(['ffmpeg', '-v', 'error', '-y', '-i', str(base), '-af',
-         f'highpass=f=120,lowpass=f=12000,volume=\'{amb_vol}\':eval=frame,afade=t=out:st={TOTAL - 1.2}:d=1.2',
-         '-ar', '48000', '-ac', '2', str(amb)])
+    # só a voz (voice over); som original dos vídeos removido a pedido da Tati
     mix = WORK / 'mix.wav'
-    run(['ffmpeg', '-v', 'error', '-y', '-i', str(voice_tl), '-i', str(amb), '-filter_complex',
-         '[0:a][1:a]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9[a]', '-map', '[a]', '-ar', '48000', str(mix)])
+    run(['ffmpeg', '-v', 'error', '-y', '-i', str(voice_tl), '-af',
+         'loudnorm=I=-14:TP=-1.5:LRA=9', '-ar', '48000', '-t', f'{TOTAL:.3f}', str(mix)])
 
     caps = build_captions(words)
     write_ass(caps, WORK / 'legendas.ass'); write_srt(caps, WORK / 'legendas.srt')
     json.dump(caps, open(WORK / 'legendas.json', 'w'), ensure_ascii=False, indent=1)
 
-    ovl = [(overlay_png(n, lines, band), a, b, anim) for n, a, b, anim, lines, band in OVERLAYS]
+    ovl = [(overlay_png(n, lines, band), T(a), T(b), anim) for n, a, b, anim, lines, band in OVERLAYS]
 
     # color grading de outono (suave, global; sem retoque de pele)
     grade = ('eq=contrast=1.04:saturation=1.07:gamma=0.99,'

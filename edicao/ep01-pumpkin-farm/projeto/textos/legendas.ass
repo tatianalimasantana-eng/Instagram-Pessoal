@@ -11,22 +11,22 @@ Style: Legenda,Fira Sans,74,&H00FFFFFF,&H00FFFFFF,&H003A4A53,&H8C000000,-1,-1,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.49,0:00:02.28,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Se tem uma coisa que você
-Dialogue: 0,0:00:02.25,0:00:04.50,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}precisa fazer pelo menos uma vez
-Dialogue: 0,0:00:04.47,0:00:06.26,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}durante o outono aqui no {\t(1330,1470,\c&H0000D4FF&\fscx114\fscy114)}Canadá{\r}
-Dialogue: 0,0:00:06.23,0:00:08.52,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}é visitar uma fazenda de {\t(1810,1950,\c&H0000D4FF&\fscx114\fscy114)}abóboras{\r}
-Dialogue: 0,0:00:08.49,0:00:11.38,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E foi exatamente esse o nosso {\t(2250,2390,\c&H0000D4FF&\fscx114\fscy114)}passeio{\r}
-Dialogue: 0,0:00:13.23,0:00:14.98,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Olha só que lugar mais lindo
-Dialogue: 0,0:00:14.95,0:00:17.24,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Sério, parece até cenário de filme
-Dialogue: 0,0:00:17.21,0:00:19.02,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}com essas abóboras gigantes
-Dialogue: 0,0:00:18.99,0:00:20.64,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}e toda essa decoração de {\t(1410,1550,\c&H0000D4FF&\fscx114\fscy114)}fall{\r}
-Dialogue: 0,0:00:20.61,0:00:22.76,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E não é só para tirar foto, não
-Dialogue: 0,0:00:22.73,0:00:25.20,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}O lugar também tem uma lojinha super fofa
-Dialogue: 0,0:00:25.17,0:00:26.80,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}cheia de coisinhas para olhar
-Dialogue: 0,0:00:26.77,0:00:28.80,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}e até um espaço para tomar café
-Dialogue: 0,0:00:32.05,0:00:33.99,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Eu amo esses passeios que fazem
-Dialogue: 0,0:00:33.96,0:00:35.73,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}a gente aproveitar cada estação
-Dialogue: 0,0:00:35.70,0:00:36.53,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}de um jeito diferente
-Dialogue: 0,0:00:36.50,0:00:38.63,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E se você mora aqui em {\t(1770,1910,\c&H0000D4FF&\fscx114\fscy114)}Ontário{\r}
-Dialogue: 0,0:00:38.60,0:00:39.69,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}já salva essa dica
-Dialogue: 0,0:00:39.66,0:00:41.15,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}para conhecer no próximo {\t(1050,1190,\c&H0000D4FF&\fscx114\fscy114)}outono{\r}
+Dialogue: 0,0:00:00.40,0:00:01.85,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Se tem uma coisa que você
+Dialogue: 0,0:00:01.87,0:00:03.70,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}precisa fazer pelo menos uma vez
+Dialogue: 0,0:00:03.72,0:00:05.16,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}durante o outono aqui no {\t(1117,1257,\c&H0000D4FF&\fscx114\fscy114)}Canadá{\r}
+Dialogue: 0,0:00:05.18,0:00:07.05,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}é visitar uma fazenda de {\t(1517,1657,\c&H0000D4FF&\fscx114\fscy114)}abóboras{\r}
+Dialogue: 0,0:00:07.07,0:00:09.48,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E foi exatamente esse o nosso {\t(1883,2023,\c&H0000D4FF&\fscx114\fscy114)}passeio{\r}
+Dialogue: 0,0:00:11.02,0:00:12.43,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Olha só que lugar mais lindo
+Dialogue: 0,0:00:12.45,0:00:14.31,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Sério, parece até cenário de filme
+Dialogue: 0,0:00:14.33,0:00:15.80,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}com essas abóboras gigantes
+Dialogue: 0,0:00:15.82,0:00:17.15,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}e toda essa decoração de {\t(1183,1323,\c&H0000D4FF&\fscx114\fscy114)}fall{\r}
+Dialogue: 0,0:00:17.17,0:00:18.91,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E não é só para tirar foto, não
+Dialogue: 0,0:00:18.93,0:00:20.95,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}O lugar também tem uma lojinha super fofa
+Dialogue: 0,0:00:20.97,0:00:22.28,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}cheia de coisinhas para olhar
+Dialogue: 0,0:00:22.30,0:00:24.00,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}e até um espaço para tomar café
+Dialogue: 0,0:00:26.70,0:00:28.27,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}Eu amo esses passeios que fazem
+Dialogue: 0,0:00:28.29,0:00:29.72,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}a gente aproveitar cada estação
+Dialogue: 0,0:00:29.74,0:00:30.39,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}de um jeito diferente
+Dialogue: 0,0:00:30.41,0:00:32.14,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}E se você mora aqui em {\t(1483,1623,\c&H0000D4FF&\fscx114\fscy114)}Ontário{\r}
+Dialogue: 0,0:00:32.16,0:00:33.02,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}já salva essa dica
+Dialogue: 0,0:00:33.04,0:00:34.29,Legenda,,0,0,0,,{\fad(110,90)\move(540,1508,540,1490,0,200)}para conhecer no próximo {\t(883,1023,\c&H0000D4FF&\fscx114\fscy114)}outono{\r}
