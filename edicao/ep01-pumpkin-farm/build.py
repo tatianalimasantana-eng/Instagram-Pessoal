@@ -84,7 +84,7 @@ SHOTS = [
     ('V', 'IMG_7318', 0.20, 31.45, 32.10, {}),                     # respiro 2
     ('P', 'IMG_7479', 0, 32.10, 34.40, dict(cx=.55, z=(1.00, 1.07))),  # folha de maple (POV) · "Eu amo esses passeios"
     ('V', 'IMG_7314', 5.00, 34.40, 37.30, {}),                     # selfie · "cada estação"
-    ('V', 'IMG_7425', 4.60, 37.30, 41.80, {}),                     # até o celeiro + aceno · "Ontário / salva essa dica"
+    ('V', 'IMG_7425', 3.05, 37.30, 41.80, {}),                     # até o celeiro + aceno, termina em 6,80 s (antes de sair do quadro)
     ('P', 'IMG_7462', 0, 41.80, TOTAL_D, dict(cx=.50, z=(1.08, 1.00))),  # árvore · encerramento
 ]
 
